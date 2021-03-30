@@ -1,9 +1,22 @@
 import gql from 'graphql-tag';
 import { print } from 'graphql'
 
- 
+
+// Paste your query in here
 const query = gql`
-PASTE QUERY HERE
+  fragment Baz on User {
+    three
+  }
+  fragment Bar on User {
+    two
+    ...Baz
+  }
+  query Foo {
+    user {
+      one
+      ...Bar
+    }
+  }
 `
 
 const mergeGql = (query) => {
